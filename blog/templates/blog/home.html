@@ -1,0 +1,67 @@
+
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+    <body>
+        <!-- Navigation-->
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url(static/code.JPG)">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Evan Krupa</h1>
+                            <span class="subheading">A Beginners Guide to Programming</span>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </header>
+        <!--Main Content-->
+       <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <br>
+
+                    
+                   
+
+                    <br><br>
+                    {% for p in posts %}
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a href="{% url 'blog_detail' p.pk %}">
+                            <h2 class="post-title">{{ p.title }}</h2>
+                            <h3 class="post-subtitle">{{ p.content | slice:":200"}}...</h3>
+                        </a>
+                        <p class="post-meta">
+                            Posted by
+                            <a href="{% url 'about' %}">Evan Krupa</a>
+                            on {{p.pub_date}}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; Evan Krupa 2024</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+    </body>
+{% endblock %}
+

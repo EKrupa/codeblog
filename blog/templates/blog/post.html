@@ -1,0 +1,130 @@
+
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+        <!-- Page Header-->
+       <body>
+        
+    <!--     Post Content-->
+   
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+
+
+
+                <img src="{% static 'comp.JPG' %}" class="img-fluid" alt="Responsive image">
+                
+               
+
+                
+                
+               <br><br><br>
+                <!-- Post preview-->
+               
+                <div class="">
+                    <a>
+                        
+                        <h4 class="post-title">{{ post.title }}</h4>
+                         <!-- Divider-->
+               <!-- <hr class="my-4" />-->
+                        {% for cat in category %}
+                        <a href="{% url 'blog_category' cat.name %}">
+                            {{ cat.name }}
+                        </a>
+                        {% endfor %}
+                        <p class="post-subtitle">{{ post.content | linebreaks }}</p>
+                    </a>
+                    <p class="post-meta">
+                        Posted by
+                        <a href="{% url 'about' %}">Evan Krupa</a>
+                        on {{post.pub_date}}
+                      
+                    </p>
+                   
+                   
+                </div>
+
+                <br/>
+                       
+                        
+                       
+                       
+                <form method="post">
+                            <h5>Leave a comment:</h5>
+                            <div>
+                                {% csrf_token %}
+                                {{form | crispy }}
+                                </div>
+                                <div>
+                                    
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                   
+                </form>
+
+                        <br/><br/><br/>
+
+                        <h4>Read a Comment:</h4>
+                        {% for comment in comments %}
+                        <p>
+                            On {{comment.created_on }} <b>{{comment.author}} </b> wrote:</p>
+                        <p>{{comment.body | linebreaks}}</p>
+                        
+                        {% endfor %}
+
+                        
+                        
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+
+                </div>
+               
+            </div>
+            
+        </article>
+                    
+       
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; Evan Krupa 2023</div>
+                    </div>
+                </div>
+            </div>
+    </body>
+
+{% endblock %}

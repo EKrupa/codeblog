@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+
+
+<header class="masthead" style="background-color:aqua;">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1> Blog Posts</h1>
+                    <span class="subheading" style="color: darkorange;">By Date
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<body>
+            <!-- Post preview-->
+             {% for post in posted %}
+             
+            <div class="post-preview">
+                <a href="{% url 'blog_detail' c.pk %}">
+                    {% for c in context %}
+               <h2 class="post-title"><a href="{% url 'blog_detail' c.pk %}"></a>{{ post.title }}</h2>
+                    {% endfor %}
+              
+                <p class="post-subtitle">{{ post.content | slice:":200"}}</p>
+                
+                </a>
+               
+                <p class="post-meta">
+                Posted by
+            <a href="">Evan Krupa</a>
+           on {{ post.pub_date }}
+           
+           </p>
+                {% endfor %}
+      
+</body>
+      
+
+{% endblock %}
